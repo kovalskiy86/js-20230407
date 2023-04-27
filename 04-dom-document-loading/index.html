@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+
+<body>
+  <div id="root"></div>
+</body>
+
+<script type="module">
+  class BaseComponent {
+    static color = 'red';
+
+    render () {
+      console.error('parent render');
+    }
+
+    destroy () {
+      console.error('parent destroy');
+    }
+  }
+
+  //    {}   <-------------------* this
+  class Component extends BaseComponent {
+    chartHeight = 50;
+
+    constructor () {
+      super();
+      this.title = 'foo bar';
+    }
+
+    foobar () {
+      console.error('child foobar');
+    }
+
+    render () {
+      console.error('child render');
+      super.render();
+    }
+  }
+
+  const obj = new Component();
+
+  console.error(Component.color);
+</script>

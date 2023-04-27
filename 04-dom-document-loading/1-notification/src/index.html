@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<button id="btn1">Show simple message!</button>
+
+<script type="module">
+  import NotificationMessage from "../solution";
+
+  btn1.addEventListener("pointerdown", () => {
+    const notification = new NotificationMessage(
+      "Hello World" + Math.random(),
+      {
+        duration: 2000,
+        type: "success",
+      }
+    );
+
+    notification.show();
+  });
+</script>

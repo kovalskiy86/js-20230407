@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Example</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script>
+      class Component {
+        constructor (title) {
+          this.title = title;
+          this.render();
+        }
+
+        render () {
+          const wrapper = document.createElement('div');
+
+          wrapper.innerHTML = this.title;
+
+          this.element = wrapper;
+        }
+      }
+
+      const obj = new Component('Hello form component!');
+      const root = document.getElementById('root');
+
+      root.append(obj.element);
+    </script>
+  </body>
+</html>
