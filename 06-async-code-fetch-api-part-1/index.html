@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<body>
+  <div id="root"></div>
+
+  <button id="btn">Click me!</button>
+
+  <button id="btn2">
+    Unsubscribe
+  </button>
+</body>
+
+<script type="module">
+  function loadData () {
+    const promise = fetch('https://course-js.javascript.ru/api/dashboard/orders?from=2023-04-02T18%3A22%3A19.700Z&to=2023-05-02T18%3A22%3A19.700Z')
+
+    promise
+      .then(response => {
+        console.error(response);
+        return response.json();
+       })
+      .then(data => {
+        console.error(data);
+      })
+      .catch(error => {
+        console.error(12313);
+      })
+  }
+
+  const result  =  response.json();
+  result.then(data => {console.log(data)})
+
+
+
+  btn.addEventListener('click', () => {
+    loadData();
+  })
+</script>

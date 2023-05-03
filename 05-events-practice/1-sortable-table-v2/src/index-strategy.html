@@ -1,0 +1,45 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="05-events-practice/1-sortable-table-v2/src/style.css" />
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="module">
+  import SortableTable from '../solution/index-strategy.js';
+  import data from './products-data.js';
+  import { header } from './header-config.js';
+  import { eventsStrategy } from '../solution/sorting-strategies.js';
+
+  const sortableTable = new SortableTable(header, {
+    data,
+    sortingStrategy: eventsStrategy
+  });
+
+  root.append(sortableTable.element);
+
+  document.addEventListener('sort-table', async (event) => {
+    const { id, order } = event.detail;
+
+    const BACKEND_URL = 'https://course-js.javascript.ru';
+    const url = new URL('api/rest/products', BACKEND_URL);
+
+    url.searchParams.set('_sort', id);
+    url.searchParams.set('_order', order);
+    url.searchParams.set('_start', '1');
+    url.searchParams.set('_end', '10');
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    document.dispatchEvent(new CustomEvent('update-table', {
+      bubbles: true,
+      detail: {
+        data
+      }
+    }));
+  });
+</script>
+</body>

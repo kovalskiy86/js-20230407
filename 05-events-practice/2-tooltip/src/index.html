@@ -1,0 +1,37 @@
+<!doctype html>
+<meta charset="UTF-8">
+<title>Tooltip</title>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<body>
+
+  <div>
+    <div data-tooltip="foo">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi enim esse sapiente.
+      Necessitatibus praesentium similique voluptatem.
+      <div data-tooltip="bar-bar-bar">
+        Aperiam consectetur dignissimos dolores ex mollitia.
+      </div>
+      Alias aliquid animi corporis debitis, eveniet explicabo facilis hic laborum magni nisi nulla
+      numquam odio omnis quaerat quas quia, reiciendis repellat repellendus sint sit soluta suscipit
+      temporibus voluptate.
+    </div>
+
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur exercitationem fuga non
+      nulla omnis repellendus tempore? Dolorem et illum itaque minima tempore totam! Animi architecto, dicta distinctio dolores doloribus error facere ipsa nostrum odit perferendis provident quas recusandae repellendus? Doloribus exercitationem harum illum iure molestias nam soluta tempore totam voluptate.
+    </div>
+  </div>
+
+
+  <script type="module">
+    import Tooltip from '../solution';
+
+    const tooltip = new Tooltip();
+
+    tooltip.initialize();
+  </script>
+</body>
+
+

@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<meta charset="utf-8">
+
+<body>
+
+<!-- application/x-www-form-urlencoded -->
+<!-- multipart/form-data -->
+<!-- text/plain -->
+
+<!--https://requestbin.com//-->
+<div>
+  <h1>Simple form</h1>
+
+  <form target="_blank"
+        action="https://en2mna2xpr439.x.pipedream.net/sample/post/request/"
+        method="POST"
+        enctype="multipart/form-data">
+    <div><input name="account" placeholder="account" type="text"/></div>
+    <div><input name="name" placeholder="name" type="text"/></div>
+    <div><input name="file" type="file"/></div>
+    <div><input type="submit"/></div>
+  </form>
+</div>
+
+<div>
+  <h1>Make request via fetch</h1>
+  <button id="request">Make request</button>
+</div>
+
+<script>
+  request.addEventListener('click', () => {
+    const data = {
+      "foo": "foo",
+      "bar": "bar"
+    };
+
+    fetch('https://en2mna2xpr439.x.pipedream.net/sample/post/request/?sdfs&sdfsd', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      }
+    })
+    .then(response => {
+      console.error('response', response);
+      return response.json();
+    })
+    .then(data => {
+      console.error(data);
+    })
+  })
+
+</script>
+</body>

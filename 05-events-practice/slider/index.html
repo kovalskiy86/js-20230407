@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="root"></div>
+
+<script type="module">
+  import Slider from './index.js';
+
+  const slider = new Slider();
+
+  slider.element.addEventListener('position-changed', event => {
+    console.error(event.detail);
+  });
+
+  document.addEventListener('position-changed', event => {
+    console.error(event.detail);
+  });
+
+  root.append(slider.element);
+</script>
+
+</body>
+</html>

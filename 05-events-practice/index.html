@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<body>
+
+<div id="root"></div>
+
+<!--<button id="btn" onclick="foo()">Click me maybe?!</button>-->
+
+<!--<button id="btn2">Remove listener</button>-->
+
+</body>
+
+<script>
+
+  class Component {
+    onClick = event => {
+      console.error(event);
+      console.error(this.color);
+    }
+
+    constructor() {
+      this.color = 'green';
+
+      this.render();
+      this.initListeners();
+    }
+
+    render () {
+      const wrapper = document.createElement('div');
+
+      wrapper.innerHTML = `
+        <div>
+          <h1>Hello component with event listeners</h1>
+          <button id="btn">Click me please!</button>
+        </div>
+      `;
+
+      this.element = wrapper.firstElementChild;
+    }
+
+    initListeners () {
+      const btnElement = this.element.querySelector('#btn');
+
+      btnElement.addEventListener('click', this.onClick);
+    }
+
+    destroy () {
+      // this.remove();
+      const btnElement = this.element.querySelector('#btn');
+
+      btnElement.removeEventListener('click', this.onClick)
+    }
+  }
+
+  const component = new Component();
+
+  root.append(component.element);
+
+  // component.destroy();
+</script>
+
