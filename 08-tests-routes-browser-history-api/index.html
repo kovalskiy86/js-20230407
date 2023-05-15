@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<div id="root"></div>
+<button id="btn">Click me!</button>
+
+<script>
+  console.log('before error');
+
+  Promise.resolve()
+    .then()
+    .catch();
+
+  async function load () {
+    try {
+      const data = await fetch();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+</script>
+
+<script>
+  console.log('another script tag');
+</script>

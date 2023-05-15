@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<body>
+<button id="btn">click me maybe!?</button>
+
+<script type="module">
+  // try {
+  //   await upload();
+  // } catch (error) {
+  //   console.error('My error: ', error);
+  // }
+  //
+  // async function upload () {
+  //   await 1;
+  //   foo + bar
+  // }
+  //
+
+  window.addEventListener('unhandledrejection', event => {
+    console.error('unhandledrejection', event);
+  });
+
+ async function loadData (url = '') {
+   try {
+     const response = await fetch(url); // server 401
+     const data = await response.json();
+
+     return data;
+   } catch (error) {
+     console.log('My error: ', error);
+     // throw new Error(error);
+     return Promise.reject(error);
+   }
+   finally {
+     console.log('finally');
+     return 1;
+   }
+ }
+
+ // Promise.reject('my super reject')
+ //   .catch(error => {
+ //
+ //   })
+
+ const result = loadData('adasd://jsonplaceholder.typicode.com/todos/1')
+   .then(data => {
+     console.error(data);
+   })
+   // .catch(error => {
+   //   console.error('Error from catch: ', error);
+   // })
+
+  console.error(result);
+
+  // try {
+  //   const data = await loadData('adasd://jsonplaceholder.typicode.com/todos/1')
+  // } catch (error) {
+  //  console.error('try/catch', error);
+  // }
+
+</script>
+
+</body>
+
+
+
+

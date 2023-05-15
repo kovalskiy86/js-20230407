@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<body>
+  <div id="root"></div>
+
+  <script type="module">
+
+    const escape = string => string
+      .replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
+    // Возвращается с бекенда
+    import { data } from './product.js';
+
+    class SomeComponent {
+      element;
+
+      constructor(data) {
+        this.data = data;
+        this.render();
+      }
+
+      render () {
+        const element = document.createElement('div');
+
+        element.innerHTML = `
+          <div>
+            <h2>${this.data.title}</h2>
+            <div>${this.data.description}</div>
+            <div>
+              <img
+                src="${escape(this.data.images[0].url)}"
+                alt="${this.data.images[0].source}">
+            </div>
+          </div>
+        `;
+
+        this.element = element.firstElementChild;
+      }
+    }
+
+    const component = new SomeComponent(data);
+
+    root.append(component.element);
+  </script>
+</body>
+
+
+

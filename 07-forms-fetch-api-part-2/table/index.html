@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Table Component</title>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="module">
+  import Table from './index.js';
+
+  const now = new Date();
+
+  const table = new Table(
+    new Date(now.setMonth(now.getMonth() - 1)),
+    new Date()
+  );
+
+  root.append(table.element);
+</script>
+</body>
+</html>

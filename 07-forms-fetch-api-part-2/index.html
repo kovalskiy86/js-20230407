@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<body>
+  <button id="btn">Click me!</button>
+
+  <script>
+    // R1 *-----------> 100ms
+    // R2             *---------------> 150ms
+    // Total: 250ms
+
+    // R1 *------------->
+    // R2  *---------------->
+    // Total: 150ms
+    async function loadData () {
+      const promise1 = Promise.resolve('success');
+      const promise2 = Promise.reject('error')
+
+      await Promise.all([promise1, promise2]);
+    }
+
+    loadData();
+
+  </script>
+</body>

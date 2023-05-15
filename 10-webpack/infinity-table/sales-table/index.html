@@ -1,0 +1,19 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="10-webpack/infinity-table/sales-table/style.css">
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="module">
+  import SalesTable from './index.js';
+  import data from './__mocks__/sales-data.js';
+
+  const salesTable = new SalesTable({ isSortLocally: true });
+  salesTable.update(data.slice(0, 20));
+
+  root.append(salesTable.element);
+</script>
+</body>

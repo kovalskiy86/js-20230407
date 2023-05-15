@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>InfinityTable</title>
+
+  <link rel="stylesheet" href="10-webpack/infinity-table/sortable-table/style.css">
+</head>
+
+<body>
+
+<div id="root"></div>
+
+<script type="module">
+  import InfinityTable from './index.js';
+  import SalesTable from './sales-table';
+
+  import fetchJson from './utils/fetch-json.js';
+
+  const BACKEND_URL = 'https://course-js.javascript.ru/';
+  const API = `${BACKEND_URL}api/rest/orders`;
+
+  const salesTable = new SalesTable();
+  const infinityTable = new InfinityTable(salesTable);
+
+  infinityTable.element.addEventListener('load-data', async event => {
+    const { detail } = event;
+    const { start, end } = detail;
+
+    const data = await fetchJson(`${API}?&_start=${start}&_end=${end}`);
+
+    infinityTable.addRows(data);
+  });
+
+  infinityTable.element.addEventListener('sort-table', async event => {
+    const { detail } = event;
+    const { id, order } = detail;
+    const start = 1;
+    const end  = start + infinityTable.step;
+
+    infinityTable.resetPagination();
+
+    const data = await fetchJson(`${API}?&_start=${start}&_end=${end}&_sort=${id}&_order=${order}`);
+
+    infinityTable.update(data);
+  });
+
+  async function init () {
+    const data = await fetchJson(`${API}?&_start=${1}&_end=${20}`);
+    infinityTable.update(data);
+    root.append(infinityTable.element);
+  }
+
+  init();
+
+</script>
+</body>
+</html>

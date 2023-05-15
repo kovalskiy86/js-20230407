@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+
+<div id="root"></div>
+
+<a href="https://google.com">Go to google</a>
+<br><br><br>
+<button id="loadBtn">Start load...</button>
+<button id="goToPageBtn">Go to page</button>
+
+<script>
+  let timerId;
+
+  const fetchData = () => {
+    return new Promise((resolve) => {
+      timerId = setTimeout(() => {
+        resolve('the promise was resolved');
+      }, 3000)
+    });
+  };
+
+  loadBtn.addEventListener('click', async () => {
+    console.error('before fetch');
+
+    try {
+      const result = await fetchData();
+      console.error('result:', result);
+    } catch (error) {
+      console.error(`Error: ${error.message}`);
+    }
+
+    console.error('after fetch');
+  });
+
+  goToPageBtn.addEventListener('click', () => {
+    clearTimeout(timerId);
+    console.error(111);
+    root.append('show new page');
+  });
+</script>
+</body>
+</html>

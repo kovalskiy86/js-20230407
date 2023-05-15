@@ -1,0 +1,43 @@
+<!doctype html>
+<meta charset="utf-8">
+
+<input id="fileInput" type="file">
+<!--<input id="fileInputV2" type="file">-->
+
+<script type="module">
+  import ImageUploader, { ImageUploaderV2 } from './index.js';
+
+  const fileInput = document.getElementById('fileInput');
+  const uploader = new ImageUploader();
+  const uploader2 = new ImageUploaderV2();
+
+  fileInput.addEventListener('change', async () => {
+    try {
+      const [file] = fileInput.files;
+      const result = await uploader.upload(file);
+
+      alert('Изображение загружено');
+      console.log(result);
+    } catch(error) {
+      alert('Ошибка загрузки изображения');
+      console.error(error);
+    } finally {
+      alert('Готово!')
+    }
+  });
+
+  // fileInputV2.addEventListener('change', async () => {
+  //   try {
+  //     const [file] = fileInput.files;
+  //     const result = await uploader2.upload(file);
+  //
+  //     alert('Изображение загружено');
+  //     console.log(result);
+  //   } catch(error) {
+  //     alert('Ошибка загрузки изображения');
+  //     console.error(error);
+  //   } finally {
+  //     alert('Готово!')
+  //   }
+  // });
+</script>
