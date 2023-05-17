@@ -20,7 +20,6 @@ export default class ProductForm {
 
   constructor(productId = "") {
     this.productId = productId;
-    // this.render();
   }
 
   async render() {
@@ -72,21 +71,21 @@ export default class ProductForm {
       <div class="form-group form-group__half_left">
         <fieldset>
           <label class="form-label">Название товара</label>
-          <input required="" type="text" name="title" class="form-control" value='${
+          <input required="" type="text" name="title" id="title" class="form-control" value='${
       data.title
     }' placeholder="Название товара">
         </fieldset>
       </div>
       <div class="form-group form-group__wide">
         <label class="form-label">Описание</label>
-        <textarea required="" class="form-control" name="description" data-element="productDescription"  placeholder="Описание товара">${
+        <textarea required="" class="form-control" name="description" id="description" data-element="productDescription"  placeholder="Описание товара">${
       data.description
     }</textarea>
       </div>
 
       <div class="form-group form-group__wide" data-element="sortable-list-container">
         ${this.createImagesList(data)}
-        <button type="button" name="uploadImage" class="button-primary-outline">
+        <button type="button" name="uploadImage" id="uploadImage" class="button-primary-outline">
           <span>Загрузить</span>
         </button>
       </div>
@@ -99,32 +98,32 @@ export default class ProductForm {
       <div class="form-group form-group__half_left form-group__two-col">
         <fieldset>
           <label class="form-label">Цена ($)</label>
-          <input required="" type="number" name="price" class="form-control" placeholder="100" value='${
+          <input required="" type="number" name="price" id="price" class="form-control" placeholder="100" value='${
       data.price
     }'>
         </fieldset>
         <fieldset>
           <label class="form-label">Скидка ($)</label>
-          <input required="" type="number" name="discount" class="form-control" placeholder="0" value='${
+          <input required="" type="number" name="discount" id="discount" class="form-control" placeholder="0" value='${
       data.discount
     }'>
         </fieldset>
       </div>
       <div class="form-group form-group__part-half">
         <label class="form-label">Количество</label>
-        <input required="" type="number" class="form-control" name="quantity"  value='${
+        <input required="" type="number" class="form-control" id="quantity" name="quantity"  value='${
       data.quantity
     }' placeholder="1">
       </div>
       <div class="form-group form-group__part-half">
         <label class="form-label">Статус</label>
-        <select class="form-control" name="status">
+        <select class="form-control" name="status" id="status">
           <option value="1">Активен</option>
           <option value="0">Неактивен</option>
         </select>
       </div>
       <div class="form-buttons">
-        <button type="submit" name="save" class="button-primary-outline">
+        <button type="submit" name="save" id="save" class="button-primary-outline">
           ${this.productId ? "Сохранить" : "Добавить"} товар
         </button>
       </div>
@@ -146,7 +145,7 @@ export default class ProductForm {
   createCategoriesSelect() {
     const wrapper = document.createElement("div");
     wrapper.innerHTML =
-      '<select class="form-control" id="subcategory" name="subcategory"></select>';
+      '<select class="form-control" name="subcategory" id="subcategory"></select>';
     const select = wrapper.firstElementChild;
 
     for (const category of this.categories) {
@@ -172,8 +171,8 @@ export default class ProductForm {
   getImagesListItem(item) {
     return `
     <li class="products-edit__imagelist-item sortable-list__item" style="">
-      <input type="hidden" name="url" value="${item.url}">
-      <input type="hidden" name="source" value="${item.source}">
+      <input type="hidden" id="url" name="url" value="${item.url}">
+      <input type="hidden" id="source" name="source" value="${item.source}">
           <span>
             <img src="icon-grab.svg" data-grab-handle="" alt="grab">
             <img class="sortable-table__cell-img" alt="Image" src="${item.url}">
