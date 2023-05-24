@@ -1,0 +1,7 @@
+@import url("common.css");
+
+/* Styles for components  */
+/* components */
+@import url("09-webpack-part-1/1-dashboard-page/solution/components/sortable-table/src/style.css");
+@import url("09-webpack-part-1/1-dashboard-page/solution/components/range-picker/src/style.css");
+@import url("09-webpack-part-1/1-dashboard-page/solution/components/column-chart/src/style.css");
